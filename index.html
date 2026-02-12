@@ -20,7 +20,7 @@ color:white;
 overflow:hidden;
 }
 
-/* TOP MESSAGE BAR */
+/* TOP MESSAGE */
 #topMessage{
 position:fixed;
 top:20px;
@@ -46,6 +46,7 @@ border:none;
 border-radius:10px;
 cursor:pointer;
 margin:10px;
+transition:0.3s;
 }
 
 .yes{
@@ -75,13 +76,12 @@ animation:float 6s linear infinite;
 
 <body>
 
-<!-- TOP MESSAGE -->
 <div id="topMessage"></div>
 
 <div class="container">
 <h1>Will you be my Valentine Karuna? ❤️</h1>
 
-<button class="yes" onclick="accepted()">Yes 💖</button>
+<button class="yes" onclick="accepted()" id="yesBtn">Yes 💖</button>
 <button class="no" onclick="handleNo()" id="noBtn">No 🙈</button>
 
 <h2 id="response"></h2>
@@ -104,9 +104,11 @@ const messages=[
 ];
 
 let clickCount=0;
+let yesSize=1;
 
 function handleNo(){
 moveButton();
+growYes();
 
 if(clickCount<messages.length){
 document.getElementById("topMessage").innerText=messages[clickCount];
@@ -114,6 +116,13 @@ clickCount++;
 }
 }
 
+/* YES BUTTON GROWS */
+function growYes(){
+yesSize+=0.25;
+document.getElementById("yesBtn").style.transform="scale("+yesSize+")";
+}
+
+/* NO BUTTON RUNS AWAY */
 function moveButton(){
 const btn=document.getElementById("noBtn");
 btn.style.position="absolute";
