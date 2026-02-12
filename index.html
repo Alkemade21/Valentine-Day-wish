@@ -97,6 +97,10 @@ const messages=[
 "But i can’t be angry for long",
 "I loveeee youuu ♥️♥️♥️♥️",
 "Meri jaaan ab maan bhi jaoo",
+"Don’t you love me lilbee? 😓",
+"Kannu please don’t break my heart 💔",
+"Please baby i beg 😩",
+"My love, let’s not stretch it anymore!!!!!! 😭",
 "I will die if you don’t say yes",
 "The clock’s ticking",
 "10","9","8","7","6","5","4","3","2","1",
@@ -104,22 +108,14 @@ const messages=[
 ];
 
 let clickCount=0;
-let yesSize=1;
 
 function handleNo(){
 moveButton();
-growYes();
 
 if(clickCount<messages.length){
 document.getElementById("topMessage").innerText=messages[clickCount];
 clickCount++;
 }
-}
-
-/* YES BUTTON GROWS */
-function growYes(){
-yesSize+=0.25;
-document.getElementById("yesBtn").style.transform="scale("+yesSize+")";
 }
 
 /* NO BUTTON RUNS AWAY */
