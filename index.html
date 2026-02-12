@@ -46,7 +46,6 @@ border:none;
 border-radius:10px;
 cursor:pointer;
 margin:10px;
-transition:0.3s;
 }
 
 .yes{
@@ -60,6 +59,14 @@ color:#ff4d6d;
 position:relative;
 }
 
+#funnyGif{
+display:none;
+margin-top:20px;
+max-width:300px;
+border-radius:15px;
+}
+
+/* floating hearts */
 .heart{
 position:absolute;
 color:white;
@@ -81,10 +88,15 @@ animation:float 6s linear infinite;
 <div class="container">
 <h1>Will you be my Valentine Karuna? ❤️</h1>
 
-<button class="yes" onclick="accepted()" id="yesBtn">Yes 💖</button>
+<button class="yes" onclick="accepted()">Yes 💖</button>
 <button class="no" onclick="handleNo()" id="noBtn">No 🙈</button>
 
 <h2 id="response"></h2>
+
+<!-- GIF appears after YES -->
+<img id="funnyGif"
+src="https://media0.giphy.com/media/v1.Y2lkPTZjMDliOTUyMXk2Mm9xMnB3YmdtbndoZjk4MnR6anUxaWl6YjVnNjYyMTJheWJldCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1JmGiBtqTuehfYxuy9/giphy.gif">
+
 </div>
 
 <script>
@@ -97,11 +109,11 @@ const messages=[
 "But i can’t be angry for long",
 "I loveeee youuu ♥️♥️♥️♥️",
 "Meri jaaan ab maan bhi jaoo",
+"I will die if you don’t say yes",
 "Don’t you love me lilbee? 😓",
 "Kannu please don’t break my heart 💔",
 "Please baby i beg 😩",
 "My love, let’s not stretch it anymore!!!!!! 😭",
-"I will die if you don’t say yes",
 "The clock’s ticking",
 "10","9","8","7","6","5","4","3","2","1",
 "I am dead but you can revive me by saying YES 😽🥹"
@@ -118,7 +130,7 @@ clickCount++;
 }
 }
 
-/* NO BUTTON RUNS AWAY */
+/* NO button runs away */
 function moveButton(){
 const btn=document.getElementById("noBtn");
 btn.style.position="absolute";
@@ -126,10 +138,13 @@ btn.style.left=Math.random()*80+"%";
 btn.style.top=Math.random()*80+"%";
 }
 
+/* YES clicked */
 function accepted(){
 document.getElementById("response").innerText=
 "Yay Karuna! You just made me the happiest person alive ❤️";
+
 document.getElementById("topMessage").innerText="";
+document.getElementById("funnyGif").style.display="block";
 }
 
 /* floating hearts */
