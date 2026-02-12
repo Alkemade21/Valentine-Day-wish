@@ -6,6 +6,7 @@
 <title>For Karuna ❤️</title>
 
 <style>
+
 body{
 margin:0;
 font-family:Arial,sans-serif;
@@ -19,15 +20,23 @@ color:white;
 overflow:hidden;
 }
 
+/* TOP MESSAGE BAR */
+#topMessage{
+position:fixed;
+top:20px;
+left:50%;
+transform:translateX(-50%);
+font-size:26px;
+font-weight:bold;
+z-index:1000;
+}
+
+/* MAIN BOX */
 .container{
 background:rgba(255,255,255,0.15);
 padding:40px;
 border-radius:20px;
 backdrop-filter:blur(10px);
-}
-
-h1{
-font-size:38px;
 }
 
 button{
@@ -50,22 +59,6 @@ color:#ff4d6d;
 position:relative;
 }
 
-#messages{
-margin-top:20px;
-font-size:20px;
-font-weight:bold;
-}
-
-.popup{
-position:absolute;
-animation:fade 3s linear forwards;
-}
-
-@keyframes fade{
-0%{opacity:1}
-100%{opacity:0}
-}
-
 .heart{
 position:absolute;
 color:white;
@@ -76,10 +69,14 @@ animation:float 6s linear infinite;
 0%{transform:translateY(100vh);opacity:1}
 100%{transform:translateY(-10vh);opacity:0}
 }
+
 </style>
 </head>
 
 <body>
+
+<!-- TOP MESSAGE -->
+<div id="topMessage"></div>
 
 <div class="container">
 <h1>Will you be my Valentine Karuna? ❤️</h1>
@@ -88,12 +85,11 @@ animation:float 6s linear infinite;
 <button class="no" onclick="handleNo()" id="noBtn">No 🙈</button>
 
 <h2 id="response"></h2>
-<div id="messages"></div>
 </div>
 
 <script>
 
-const messages = [
+const messages=[
 "I know you are joking",
 "I love you baby 🥹",
 "Don’t do this to me",
@@ -107,44 +103,31 @@ const messages = [
 "I am dead but you can revive me by saying YES 😽🥹"
 ];
 
-let clickCount = 0;
+let clickCount=0;
 
 function handleNo(){
 moveButton();
 
-if(clickCount < messages.length){
-showPopup(messages[clickCount]);
+if(clickCount<messages.length){
+document.getElementById("topMessage").innerText=messages[clickCount];
 clickCount++;
 }
 }
 
 function moveButton(){
-const btn = document.getElementById("noBtn");
+const btn=document.getElementById("noBtn");
 btn.style.position="absolute";
 btn.style.left=Math.random()*80+"%";
 btn.style.top=Math.random()*80+"%";
 }
 
-function showPopup(text){
-const msg=document.createElement("div");
-msg.className="popup";
-msg.innerText=text;
-
-msg.style.left=Math.random()*80+"vw";
-msg.style.top=Math.random()*80+"vh";
-msg.style.fontSize="22px";
-
-document.body.appendChild(msg);
-
-setTimeout(()=>msg.remove(),3000);
-}
-
 function accepted(){
-document.getElementById("response").innerText =
+document.getElementById("response").innerText=
 "Yay Karuna! You just made me the happiest person alive ❤️";
+document.getElementById("topMessage").innerText="";
 }
 
-// floating hearts
+/* floating hearts */
 function createHeart(){
 const heart=document.createElement("div");
 heart.className="heart";
@@ -154,6 +137,7 @@ heart.style.fontSize=Math.random()*20+20+"px";
 document.body.appendChild(heart);
 setTimeout(()=>heart.remove(),6000);
 }
+
 setInterval(createHeart,300);
 
 </script>
